@@ -39,16 +39,16 @@ public class CustomerService {
 		}
 	}
 	
-//	public Customer viewProfile(Integer customerId)
-//	{
-//		try {
-//			return customerRepo.viewProfile(customerId);
-//		}
-//		catch(Exception e) {
-//			System.out.println(e);
-//			return null;
-//		}
-//	}
+	public Customer viewProfile(Integer customerId)
+	{
+		try {
+			return customerRepo.viewProfile(customerId);
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
 //
 //
 //	

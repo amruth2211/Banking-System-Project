@@ -10,8 +10,8 @@ public interface CustomerDAO {
 //	public String welcome(Integer customerId)
 //            throws SQLException;
 	
-//	public Customer viewProfile(Integer customerId)
-//            throws SQLException;
+	public Customer viewProfile(Integer customerId)
+            throws SQLException;
 
 //    public int updateProfile(String name,Address address)
 //            throws SQLException;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,42 +40,22 @@ public class CustomerController {
 		
 	}
 	
-	
-	@GetMapping("/list")
-	public List<Customer> showAllCustomers() {
-//		ModelAndView mav = new ModelAndView("list-customers");
-//		mav.addObject("employees", employeeService.showAllEmployees());
-//		return mav;
-		return customerService.showAllCustomers();
+	@GetMapping("/viewProfile")
+	public ModelAndView viewProfile(@RequestParam MultiValueMap<String, String> paramMap) {
+		ModelAndView mav = new ModelAndView("customer-dashBoard");
+		mav.addObject("customers",customerService.viewProfile(Integer.parseInt(paramMap.getFirst("customerId"))));
+		mav.addObject("bankNames",paramMap.getFirst("bankNames"));
+		mav.addObject("accountNo",paramMap.getFirst("accountNo"));
+		return mav;
 	}
-//	
-//	@GetMapping("/addEmployeeForm")
-//	public ModelAndView addEmployeeForm() {
-//		ModelAndView mav = new ModelAndView("add-employee-form");
-//		Employee newEmployee = new Employee();
-//		mav.addObject("employee", newEmployee);
-//		return mav;
-//	}
-//	
-//	@PostMapping("/saveEmployee")
-//	public String saveEmployee(@ModelAttribute Employee employee) {
-//		employeeService.createEmployee(employee);
-//		return "redirect:/list";
-//	}
-//	
-//	@GetMapping("/showUpdateForm")
-//	public ModelAndView showUpdateForm(@RequestParam Integer employeeId) {
-//		ModelAndView mav = new ModelAndView("add-employee-form");
-//		Employee employee = employeeService.getEmployeeById(employeeId);
-//		mav.addObject("employee", employee);
-//		return mav;
-//	}
-//	
-//	@GetMapping("/deleteEmployee")
-//	public String deleteEmployee(@RequestParam Integer employeeId) {
-//		employeeService.deleteEmployee(employeeId);
-//		return "redirect:/list";
-//	}
-//	
+	
+	@GetMapping("showCustomerForm")
+	public ModelAndView showEmployeeDetails(@RequestParam Integer customerId) {
+		ModelAndView mav = new ModelAndView("customer-details");
+		mav.addObject("customers",customerService.viewProfile(customerId));
+		return mav;
+	}
+	
+
 	
 }

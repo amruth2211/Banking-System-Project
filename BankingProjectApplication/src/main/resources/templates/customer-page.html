@@ -20,7 +20,7 @@
         <section>
         <tbody>
         
-        <form th:action="@{/customer/list}" th:object="${customer}" method="GET">
+        <form th:action="@{/customer/viewProfile}" th:object="${customer}" method="GET">
         
          <div alight="left">
 			<tr>
@@ -37,11 +37,19 @@
 		</div>
          
           <hr>
-          
-          <div id="accountNo" name="accountNo" class="form-group">
+          <div class="container">
+          <label class= "form-Label row" >AccountNo</label>
+             <div id="accountNo" name="accountNo" class="form-group row">
           <input type="text" id="accountNo" name="accountNo" class="form-control col-4 mb-4" placeholder="Enter AccountNo" />
           
           </div>
+          <label class= "form-Label row" >CustomerID</label>
+             <div id="customerId" name="customerId" class="form-group row">
+          <input type="text" id="customerId" name="customerId" class="form-control col-4 mb-4" placeholder="Enter customerId" />
+          
+          </div>
+          </div>
+       
           
         <button type="submit" class="btn btn-primary col-2">Login</button>
           
