@@ -56,6 +56,7 @@ CREATE TABLE BANKACCOUNTS (
      TYPE ENUM('SAVINGS','CURRENT'),
     BranchCode INTEGER,
     customerId int NOT NULL,
+    accBalance int DEFAULT 0,
     PRIMARY KEY (AccNo),
     FOREIGN KEY (BranchCode) REFERENCES BRANCHES(BranchCode),
     FOREIGN KEY (customerId) REFERENCES customers(customerId)
@@ -83,7 +84,7 @@ CREATE TABLE reversalRequest(
 INSERT INTO Banks VALUES('1234','SBI','Nizampet,Hyderabad,Telangana,India,500090');
 INSERT INTO Banks VALUES('4356','ICICI','Nizampet,Hyderabad,Telangana,India,500090');
 
-insert into customers VALUES('12','amruth','Nizampet,Hyderabad,Telangana,India,500090');
+insert into customers VALUES('12','Amruth','Nizampet,Hyderabad,Telangana,India,500090');
 
 insert into customers VALUES('13','Aasrith','Miyapur,Hyderabad,Telangana,India,500090');
 insert into branches VALUES('250','Nizampet,Hyderabad,Telangana,India,500090','patil','Delhi','1234');
@@ -92,8 +93,8 @@ insert into branches VALUES('350','kukatpally,Hyderabad,Telangana,India,500090',
 insert into employee VALUES('430','sridevi','250');
 insert into employee VALUES('530','Madhuri','350');
 
-insert into bankaccounts values('89023383','savings','250','12');
-insert into bankaccounts values('95098764','current','350','13');
+insert into bankaccounts values('89023383','savings','250','12',default);
+insert into bankaccounts values('95098764','current','350','13',default);
 
 INSERT INTO TRANSACTIONS VALUES('2450','89023383','1000','debit',default);
 INSERT INTO TRANSACTIONS VALUES('3560','89023383','1000','credit',default);
