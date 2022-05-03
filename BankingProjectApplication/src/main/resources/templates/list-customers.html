@@ -13,14 +13,32 @@
 	</head>
 	
 	<body>
-		
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="navbar-header ">
+            <a class="navbar-brand " href="#">Employee Portal</a>
+        </div>
+        <div>
+            <ul class="navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a th:href="@{/employee/index}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">LogOut</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<br>
+
 	<div class="container">
 		
-			<h3>List Customers</h3>
+			<h2  class="display-6 text-primary text ">List Customers</h2>
 			
 			<hr/>
 			
-			<br/><br/>
+			<br/>
 			<table class="table table-bordered table-striped" id="customersTable">
 			
 				<thead>

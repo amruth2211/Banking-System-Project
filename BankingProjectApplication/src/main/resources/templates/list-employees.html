@@ -13,15 +13,33 @@
 	</head>
 	
 	<body>
-		
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="navbar-header ">
+            <a class="navbar-brand " href="#">Admin Portal</a>
+        </div>
+        <div>
+            <ul class="navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a th:href="@{/admin/index}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">LogOut</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<br>
+<br>	
 		<div class="container">
 		
-			<h3>List Employees</h3>
+			<h2 class="display-6 text-primary text">List Employees</h2>
 			
 			<hr/>
 			<a th:href="@{addEmployeeForm}" class="btn btn-primary">Add Employee</a>
 			<br/><br/>
-			<table class="table table-bordered table-striped" id="employeesTable">
+			<table class="table table-bordered table-striped" id="employeeTable">
 			
 				<thead>
 					<tr>
@@ -50,7 +68,7 @@
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
 		<script>
 			$(document).ready(function() {
-				$("#employeesTable").DataTable({
+				$("#employeeTable").DataTable({
 						'aoColumnDefs': [{
         				'bSortable': false,
         				'aTargets': [-1] /* 1st one, start by the right */
