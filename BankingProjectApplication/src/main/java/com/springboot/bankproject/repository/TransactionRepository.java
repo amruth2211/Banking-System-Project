@@ -22,32 +22,24 @@ public class TransactionRepository implements TransactionDAO
 	        this.conn = DatabaseConnection.getConnection();
 	    }
 	    
-	    @Override
-	    public Integer deposit(Integer accountNo,Double amount)
-	            throws SQLException{
-	    		
-	    	  PreparedStatement ps = conn.prepareStatement(" UPDATE transactions SET amount=amount+?  where ACCNO=?");
-	    	  ps.setDouble(1, amount);
-		       ps.setInt(2, accountNo);
-		       int rowsUpdated = ps.executeUpdate();
-		       return rowsUpdated;
-//		        System.out.println(rowsUpdated + " row updated");
-	    }
-	    @Override
-	    public Integer withDraw(Integer accountNo,Double amount)
-	            throws SQLException{
-	    	
-	    	  PreparedStatement ps = conn.prepareStatement(" UPDATE transactions SET amount=amount-?  where ACCNO=?");
-	    	  ps.setDouble(1, amount);
-		       ps.setInt(2, accountNo);
-		       int rowsUpdated = ps.executeUpdate();
-		       return rowsUpdated;
-	    }
+
 	    
 	    @Override
 		public List<Transaction> showAllTransactions(int branchCode) throws SQLException{
 			 PreparedStatement ps = conn.prepareStatement("select transactions.* from transactions inner join bankaccounts on transactions.accno=bankaccounts.accno where bankaccounts.branchcode=?");
              ps.setInt(1,branchCode);
+			  List<Transaction> transactionList = new ArrayList<>();
+				 ResultSet rs = ps.executeQuery();
+			        while (rs.next()) {
+			        	transactionList.add( new Transaction(rs.getInt(2),rs.getDouble(3),rs.getDate(5),rs.getInt(1),rs.getString(4)));
+			        }
+			        return transactionList;
+		}
+	    
+	    @Override
+		public List<Transaction> showTransactionsByAccountNo(int accNo) throws SQLException{
+			 PreparedStatement ps = conn.prepareStatement("select * from transactions where accno=?");
+             ps.setInt(1,accNo);
 			  List<Transaction> transactionList = new ArrayList<>();
 				 ResultSet rs = ps.executeQuery();
 			        while (rs.next()) {

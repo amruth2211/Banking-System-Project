@@ -14,15 +14,15 @@ import com.springboot.bankproject.services.Transactionservice;
 public class TransactionController {
 	@Autowired
 	Transactionservice transService;
-	
-	@GetMapping("/deposit/{accountNo}/{amount}")
-	public Integer deposit(@PathVariable Integer accountNo,@PathVariable Double amount)
-    {
-		return transService.deposit(accountNo,amount);
-    }
-	@GetMapping("/withDraw/{accountNo}/{amount}")
-	public Integer withDraw(@PathVariable Integer accountNo,@PathVariable Double amount)
-    {
-		return transService.withDraw(accountNo,amount);
-    }
+//	
+//	@GetMapping("/deposit/{accountNo}/{amount}")
+//	public Integer deposit(@PathVariable Integer accountNo,@PathVariable Double amount)
+//    {
+//		return transService.deposit(accountNo,amount);
+//    }
+//	@GetMapping("/withDraw/{accountNo}/{amount}")
+//	public Integer withDraw(@PathVariable Integer accountNo,@PathVariable Double amount)
+//    {
+//		return transService.withDraw(accountNo,amount);
+//    }
 }

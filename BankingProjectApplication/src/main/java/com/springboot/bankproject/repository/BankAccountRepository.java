@@ -20,17 +20,29 @@ public class BankAccountRepository implements BankAccountDAO{
 	    public BankAccountRepository() throws SQLException, ClassNotFoundException {
 	        this.conn = DatabaseConnection.getConnection();
 	    }
-//		public int create(BankAccount bankAccount)
-//	            throws SQLException{
-//			  PreparedStatement ps = conn.prepareStatement("insert into BankAccounts values(?,?,?,?)");
-//		        ps.setInt(1, bankAccount.getAccountNo());
-//		        ps.setString(2, bankAccount.getType().name());
-//		        ps.setInt(3, bankAccount.getBranchCode());
-//		        ps.setInt(4, bankAccount.getCustomerId());
-//		     
-//		        return ps.executeUpdate();
-//		}
 
+
+	    @Override
+	    public Integer deposit(Integer accountNo,Double amount)
+	            throws SQLException{
+	    		
+	    	  PreparedStatement ps = conn.prepareStatement(" UPDATE bankaccounts SET accBalance=accBalance+?  where ACCNO=? ");
+	    	  ps.setDouble(1, amount);
+		       ps.setInt(2, accountNo);
+		       int rowsUpdated = ps.executeUpdate();
+		       return rowsUpdated;
+	    }
+	    @Override
+	    public Integer withDraw(Integer accountNo,Double amount)
+	            throws SQLException{
+	    	
+	    	  PreparedStatement ps = conn.prepareStatement(" UPDATE bankaccounts SET accBalance=accBalance-?  where ACCNO=? ");
+	    	  ps.setDouble(1, amount);
+		       ps.setInt(2, accountNo);
+		       int rowsUpdated = ps.executeUpdate();
+		       return rowsUpdated;
+	    }
+	        
 		 public int update(Integer accountNo,Integer branchCode)
 	            throws SQLException{
 	    	 PreparedStatement ps = conn.prepareStatement(
@@ -42,14 +54,6 @@ public class BankAccountRepository implements BankAccountDAO{
 	     	
 	     	return rowCount;
 	    }
-//
-//		public BankAccount viewDetails(Integer accountNo)
-//	            throws SQLException{
-//			 PreparedStatement ps = conn.prepareStatement("select * from BankAccounts where accno= ?");
-//		     ResultSet rs = ps.executeQuery();
-//		     rs.next();
-//		     return new BankAccount(rs.getInt(1),rs.getInt(4),rs.getInt(3));
-//		}
 		
 		public int delete(Integer customerId)
 	            throws SQLException{

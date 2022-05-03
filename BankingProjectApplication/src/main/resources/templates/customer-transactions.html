@@ -1,0 +1,63 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+		<title>List Transactions</title>
+		
+		<link rel="stylesheet" 
+			type="text/css" 
+			href="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.css" />
+		<link rel="stylesheet" 
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+	</head>
+	
+	<body>
+		
+		<div class="container">
+		
+			<h3>List Transactions</h3>
+			
+			<hr/>
+			
+			<br/><br/>
+			<table class="table table-bordered table-striped" id="transactionsTable">
+			
+				<thead>
+					<tr>
+						<th>AccountNo</th>
+						<th>Amount</th>
+						<th>Date</th>
+						<th>TransactionNo</th>
+						<th>TransactionType</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="transactions: ${transactions}">
+						<td th:text="${transactions.accountNo}" />
+						<td th:text="${transactions.amount}" />
+						<td th:text="${transactions.date}" />
+						<td th:text="${transactions.transactionNo}" />
+						<td th:text="${transactions.transactionType}" />
+					</tr>
+				</tbody>
+				
+			</table>
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$("#transactionsTable").DataTable({
+						'aoColumnDefs': [{
+        				'bSortable': false,
+        				'aTargets': [-1] /* 1st one, start by the right */
+    				}]
+				});
+			})
+		</script>
+	</body>
+	
+</html>

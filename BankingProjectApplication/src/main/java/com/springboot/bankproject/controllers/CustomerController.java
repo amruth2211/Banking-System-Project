@@ -1,26 +1,18 @@
 package com.springboot.bankproject.controllers;
 
-import java.util.List;
+
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.springboot.bankproject.model.Customer;
-import com.springboot.bankproject.model.Employee;
 import com.springboot.bankproject.services.BankService;
 import com.springboot.bankproject.services.CustomerService;
+import com.springboot.bankproject.services.Transactionservice;
 
 
 @RestController
@@ -28,6 +20,9 @@ import com.springboot.bankproject.services.CustomerService;
 public class CustomerController {
 	@Autowired
 	CustomerService customerService;
+	
+	@Autowired
+	Transactionservice transactionService;
 	
 	@Autowired
 	BankService bankService;
@@ -56,6 +51,18 @@ public class CustomerController {
 		return mav;
 	}
 	
-
+	@GetMapping("/transactions/list")
+	public ModelAndView showAllTransactions(@RequestParam Map<String, String> paramMap) {
+		ModelAndView mav = new ModelAndView("customer-transactions");
+		mav.addObject("transactions", transactionService.showTransactionsByAccountNo(Integer.parseInt(paramMap.get("accountNo"))));
+		return mav;
+	}
+	
+	@GetMapping("/depositForm")
+	public ModelAndView deposit(@RequestParam Map<String, String> paramMap) {
+		ModelAndView mav = new ModelAndView("customer-deposit");
+		mav.addObject("transactions", transactionService.showTransactionsByAccountNo(Integer.parseInt(paramMap.get("accountNo"))));
+		return mav;
+	}
 	
 }

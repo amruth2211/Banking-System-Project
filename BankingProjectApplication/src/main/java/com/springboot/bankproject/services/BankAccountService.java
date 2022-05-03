@@ -24,7 +24,26 @@ public class BankAccountService {
 		}
 	}
 
-  
+	 public Integer deposit(Integer accountNo,Double amount)
+     {
+		try {
+			return bankAccountRepo.deposit(accountNo, amount);
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	
+}
+	 public Integer withDraw(Integer accountNo,Double amount) {
+		 try {
+			 return bankAccountRepo.withDraw(accountNo, amount);
+		 }
+		 catch(Exception e) {
+			 System.out.println(e);
+			 return null;
+		 }
+}
 	
 
 	 public Integer update(Integer accountNo,Integer branchCode) {
