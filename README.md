@@ -3,7 +3,9 @@
 Banking System Appllcation using the SpringBoot and Front-End using the Html,BootStrap and ThymeLeaf Templates.
 
 
-# To run the project,download the SpringBoot Application 
+# To run the project,
+
+- Download the SpringBoot Application ( BankingProjectApplication )
 
 - Check for compatible JRE's and Run using the springboot
 
