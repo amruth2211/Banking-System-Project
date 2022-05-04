@@ -9,7 +9,24 @@
 			crossorigin="anonymous" />
 	</head>
 	<body>
-		
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="navbar-header ">
+            <a class="navbar-brand " href="#">Admin Portal</a>
+        </div>
+        <div>
+            <ul class="navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a th:href="@{/admin/index}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">LogOut</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<br>
 		<div class="container">
 		
 			<h3>Add New Employee</h3>
@@ -23,12 +40,22 @@
 				
 				<input type="text" th:field="*{BranchCode}" class="form-control col-4 mb-4" placeholder="Enter BranchCode" />
 				
-				<button type="submit" class="btn btn-primary col-2">Save</button>
-				<input type="hidden" th:field="*{employeeId}" />
+				<div class="col">
+			<div class="row">
+                <form th:action="@{addEmployeeForm}" th:object="${bankNames}" method="GET">
+                    <input type="hidden" th:value="${bankNames}" name="bankNames" />
+                    <button type="submit" class="btn btn-info btn-lg btn-primary">Save</button>
+                </form>
+                </div>
+            </div>
 				
 			</form>
 			<hr/>
-			<a th:href="@{list}">Back to list</a>
+			 <form th:action="@{list}" th:object="${bankNames}" method="GET">
+                    <input type="hidden" th:value="${bankNames}" name="bankNames" />
+                    <button type="submit" class="btn btn-info btn-lg btn-warning">Back to list</button>
+                </form>
+			
 		</div>
 		
 	</body>

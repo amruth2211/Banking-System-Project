@@ -29,11 +29,12 @@ public class Transaction {
 		this.date = date;
 		this.transactionNo = transactionNo;
 	}
-	public Transaction(Integer transactionNo, Integer accountNo, Date date) {
+	public Transaction(Integer transactionNo, Integer accountNo, Date date,String transactionType) {
 		super();
 		this.accountNo = accountNo;
 		this.date = date;
 		this.transactionNo = transactionNo;
+		this.transactionType=transactionType;
 	}
 
 	public Integer getAccountNo() {

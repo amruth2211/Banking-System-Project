@@ -71,7 +71,7 @@ public class BankAccountRepository implements BankAccountDAO{
 			  List<BankAccount> bankAccList = new ArrayList<>();
 				 ResultSet rs = ps.executeQuery();
 			        while (rs.next()) {
-			        	bankAccList.add( new BankAccount(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4)));
+			        	bankAccList.add( new BankAccount(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4),rs.getInt(5)));
 			        }
 			        return bankAccList;
 		}

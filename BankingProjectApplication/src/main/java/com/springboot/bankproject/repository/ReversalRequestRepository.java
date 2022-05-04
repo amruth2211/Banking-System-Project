@@ -31,7 +31,7 @@ public class ReversalRequestRepository implements ReversalRequestDAO{
 			  List<ReversalRequests> transactionList = new ArrayList<>();
 				 ResultSet rs = ps.executeQuery();
 			        while (rs.next()) {
-			        	transactionList.add( new ReversalRequests(rs.getInt(1),rs.getInt(2),rs.getDate(6),new Transaction(rs.getInt(2),rs.getInt(3),rs.getDate(4))));
+			        	transactionList.add( new ReversalRequests(rs.getInt(1),rs.getInt(2),rs.getDate(6),new Transaction(rs.getInt(2),rs.getInt(3),rs.getDate(4),rs.getString(5))));
 			        }
 			        return transactionList;
 		}

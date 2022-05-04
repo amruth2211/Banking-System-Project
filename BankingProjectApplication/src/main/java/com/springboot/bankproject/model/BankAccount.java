@@ -22,6 +22,14 @@ public class BankAccount {
 		this.accBalance = accBalance;
 		this.transactions = transactions;
 	}
+	public BankAccount(Integer accountNo, String type, Integer branchCode, Integer customerId,double accBalance) {
+		super();
+		this.accountNo = accountNo;
+		this.type = type;
+		this.branchCode = branchCode;
+		this.customerId = customerId;
+		this.accBalance=accBalance;
+	}
 	public BankAccount(Integer accountNo, String type, Integer branchCode, Integer customerId) {
 		super();
 		this.accountNo = accountNo;

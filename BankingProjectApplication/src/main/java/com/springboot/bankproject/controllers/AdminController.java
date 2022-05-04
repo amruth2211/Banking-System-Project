@@ -76,9 +76,10 @@ public class AdminController {
 	}
 
 	@GetMapping("employees/list")
-	public ModelAndView getAllEmployees(@RequestParam Map<String, String> paramMap) {
+	public ModelAndView getAllEmployees(@RequestParam MultiValueMap<String, String> paramMap) {
 		ModelAndView mav = new ModelAndView("list-employees");
-		mav.addObject("employees", employeeService.showAllEmployeesByBankName(paramMap.get("bankNames")));
+		mav.addObject("bankNames",paramMap.getFirst("bankNames"));
+		mav.addObject("employees", employeeService.showAllEmployeesByBankName(paramMap.getFirst("bankNames")));
 		return mav;
 	}
 
@@ -92,34 +93,40 @@ public class AdminController {
 	
 	
 	@GetMapping("employees/addEmployeeForm")
-	public ModelAndView addEmployeeForm() {
+	public ModelAndView addEmployeeForm(@RequestParam Map<String, String> paramMap) {
 		ModelAndView mav = new ModelAndView("add-employee-form");
 		Employee newEmployee = new Employee();
+		mav.addObject("bankNames",paramMap.get("bankNames"));
 		mav.addObject("employee", newEmployee);
 		mav.addObject("branches",branchService.showBranches());
 		return mav;
 	}
 	
 	@PostMapping("employees/saveEmployee")
-	public String saveEmployee(@ModelAttribute Employee employee) {
+	public ModelAndView saveEmployee(@RequestParam MultiValueMap<String, String> paramMap,@ModelAttribute Employee employee) {
+		ModelAndView mav = new ModelAndView("save-list-employees");
 		employeeService.createEmployee(employee);
-		ModelAndView mav = new ModelAndView("list-employees");
-		return "redirect:/employee/list";
+		mav.addObject("bankNames",paramMap.getFirst("bankNames"));
+		mav.addObject("employees", employeeService.showAllEmployeesByBankName(paramMap.getFirst("bankNames")));
+		return mav;
 	}
 	
 	@GetMapping("employees/showUpdateForm")
-	public ModelAndView showUpdateForm(@RequestParam Integer employeeId) {
+	public ModelAndView showUpdateForm(@RequestParam MultiValueMap<String, String> paramMap) {
 		ModelAndView mav = new ModelAndView("add-employee-form");
-		Employee employee = employeeService.getEmployeeById(employeeId);
+		Employee employee = employeeService.getEmployeeById(Integer.parseInt(paramMap.getFirst("employeeId")));
+		mav.addObject("bankNames",paramMap.get("bankNames"));
 		mav.addObject("employee", employee);
 		return mav;
 	}
 	
 	@GetMapping("employees/deleteEmployee")
-	public String deleteEmployee(@RequestParam Integer employeeId) {
-		employeeService.deleteEmployee(employeeId);
+	public ModelAndView deleteEmployee(@RequestParam MultiValueMap<String, String> paramMap) {
 		ModelAndView mav = new ModelAndView("list-employees");
-		return "redirect:employee/list";
+		employeeService.deleteEmployee(Integer.parseInt(paramMap.getFirst("employeeId")));
+		mav.addObject("bankNames",paramMap.get("bankNames"));
+		mav.addObject("employees", employeeService.showAllEmployeesByBankName(paramMap.getFirst("bankNames")));
+		return mav;
 	}
 	
 	
