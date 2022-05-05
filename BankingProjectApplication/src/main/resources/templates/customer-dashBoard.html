@@ -58,8 +58,8 @@
             <br>
              <div class="row justify-content-center">
             <div class="col-md-6">
-                <form th:action="@{/customer/transactions/deposit}" th:object="${bankNames}" method="GET">
-                    <input type="hidden" th:value="${accNo}" name="accNo" />
+                <form th:action="@{/customer/depositForm}" th:object="${bankNames}" method="GET">
+                    <input type="hidden" th:value="${accountNo}" name="accountNo" />
                     <button type="submit" class="btn btn-warning btn-lg btn-block">Deposit</button>
                 </form>
             </div>
@@ -67,8 +67,8 @@
         <br>
             <div class="row justify-content-center">
             <div class="col-md-6">
-                <form th:action="@{/customer/transactions/withDraw}" th:object="${bankNames}" method="GET">
-                    <input type="hidden" th:value="${accNo}" name="accNo" />
+                <form th:action="@{/customer/withDrawForm}" th:object="${bankNames}" method="GET">
+                    <input type="hidden" th:value="${accountNo}" name="accountNo" />
                     <button type="submit" class="btn btn-success btn-lg btn-block">Withdraw</button>
                 </form>
             </div>

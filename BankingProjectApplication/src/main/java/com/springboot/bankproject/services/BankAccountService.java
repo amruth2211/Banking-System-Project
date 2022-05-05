@@ -24,24 +24,24 @@ public class BankAccountService {
 		}
 	}
 
-	 public Integer deposit(Integer accountNo,Double amount)
+	 public Boolean deposit(Double amount, Integer accNo)
      {
 		try {
-			return bankAccountRepo.deposit(accountNo, amount);
+			return bankAccountRepo.deposit(amount,accNo);
 		}
 		catch(Exception e) {
 			System.out.println(e);
-			return null;
+			return false;
 		}
 	
 }
-	 public Integer withDraw(Integer accountNo,Double amount) {
+	 public Boolean withDraw(Double amount, Integer accNo) {
 		 try {
-			 return bankAccountRepo.withDraw(accountNo, amount);
+			 return bankAccountRepo.withDraw(amount,accNo);
 		 }
 		 catch(Exception e) {
 			 System.out.println(e);
-			 return null;
+			 return false;
 		 }
 }
 	

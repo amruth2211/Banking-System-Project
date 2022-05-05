@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 	
 	<head>
-		<title>List Transactions</title>
+		<title>List Customers</title>
 		
 		<link rel="stylesheet" 
 			type="text/css" 
@@ -13,62 +13,59 @@
 	</head>
 	
 	<body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <div class="navbar-header ">
-            <a class="navbar-brand " href="#">Customer Portal</a>
+            <a class="navbar-brand " href="#">Employee Portal</a>
         </div>
         <div>
-        <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-                <a th:href="@{/customer/index}">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">LogOut</button>
-                </a></li>
-        </ul>
+            <ul class="navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a th:href="@{/admin/index}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">LogOut</button>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
 <br>
 <br>
+
+	<div class="container">
 		
-		<div class="container">
-		
-			
-			<h2 class="display-6 text-primary text">List Transactions</h2>
+			<h2  class="display-6 text-primary text ">List Customers</h2>
 			
 			<hr/>
 			
 			<br/>
-			<table class="table table-bordered table-striped" id="transactionsTable">
+			<table class="table table-bordered table-striped" id="customersTable">
 			
 				<thead>
 					<tr>
-						<th>AccountNo</th>
-						<th>Amount</th>
-						<th>Date</th>
-						<th>TransactionNo</th>
-						<th>TransactionType</th>
-						
+						<th>customerID</th>
+						<th>Name</th>
+						<th>Address</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="transactions: ${transactions}">
-						<td th:text="${transactions.accountNo}" />
-						<td th:text="${transactions.amount}" />
-						<td th:text="${transactions.date}" />
-						<td th:text="${transactions.transactionNo}" />
-						<td th:text="${transactions.transactionType}" />
+					<tr th:each="customers: ${customers}">
+						<td th:text="${customers.customerId}" />
+						<td th:text="${customers.name}" />
+						<td th:text="${customers.address}" />
+						
 					</tr>
 				</tbody>
 				
 			</table>
 		</div>
+
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/datatables.min.js"></script>
 		<script>
 			$(document).ready(function() {
-				$("#transactionsTable").DataTable({
+				$("#customersTable").DataTable({
 						'aoColumnDefs': [{
         				'bSortable': false,
         				'aTargets': [-1] /* 1st one, start by the right */

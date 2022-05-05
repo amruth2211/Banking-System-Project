@@ -1,7 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 	<head>
-		<title>Deposit Form</title>
+		<title>WithDraw Form</title>
 		
 		<link rel="stylesheet" 
 			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
@@ -29,11 +29,11 @@
 <br>
 		<div class="container">
 		
-		<h2 class="display-6 text-primary text">CUSTOMER DEPOSIT FORM</h2>
+		<h2 class="display-6 text-primary text">CUSTOMER WITHDRAW FORM</h2>
 			
 			<hr/>
 			
-	<form th:action="@{saveDeposit}" th:object="${accountNumber}" method="POST">
+	<form th:action="@{savewithDraw}" th:object="${accountNumber}" method="POST">
 			
 			<div id="accountNumber" name="accountNumber" class="form-group">
 				<label class= "form-Label" >Account No :</label><br>

@@ -7,10 +7,10 @@ import com.springboot.bankproject.model.BankAccount;
 
 
 public interface BankAccountDAO {
- 	public Integer deposit(Integer accountNo,Double amount)
+ 	public Boolean deposit(Double amount, Integer accNo)
             throws SQLException;
 
-    public Integer withDraw(Integer accountNo,Double amount)
+    public Boolean withDraw(Double amount, Integer accNo)
             throws SQLException;
 	
 //	public int create(BankAccount bankAccount)

@@ -23,25 +23,45 @@ public class BankAccountRepository implements BankAccountDAO{
 
 
 	    @Override
-	    public Integer deposit(Integer accountNo,Double amount)
-	            throws SQLException{
-	    		
-	    	  PreparedStatement ps = conn.prepareStatement(" UPDATE bankaccounts SET accBalance=accBalance+?  where ACCNO=? ");
-	    	  ps.setDouble(1, amount);
-		       ps.setInt(2, accountNo);
-		       int rowsUpdated = ps.executeUpdate();
-		       return rowsUpdated;
-	    }
+		public Boolean deposit(Double amount, Integer accNo) throws SQLException {
+	    	 PreparedStatement ps = conn.prepareStatement( "UPDATE bankaccounts SET accBalance = accBalance + ? WHERE accNo = ?");
+		        ps.setDouble(1,amount);
+		        ps.setInt(2,accNo);
+		        int rowsUpdated = ps.executeUpdate();
+			if (rowsUpdated==1) {
+				this.creditInTransaction(amount, accNo);
+				return true;
+			}
+			return false;
+		}
+	    
 	    @Override
-	    public Integer withDraw(Integer accountNo,Double amount)
-	            throws SQLException{
-	    	
-	    	  PreparedStatement ps = conn.prepareStatement(" UPDATE bankaccounts SET accBalance=accBalance-?  where ACCNO=? ");
-	    	  ps.setDouble(1, amount);
-		       ps.setInt(2, accountNo);
-		       int rowsUpdated = ps.executeUpdate();
-		       return rowsUpdated;
-	    }
+		public Boolean withDraw(Double amount, Integer accNo) throws SQLException {
+	    	 PreparedStatement ps = conn.prepareStatement( "UPDATE bankaccounts SET accBalance = accBalance - ? WHERE accNo = ?");
+		        ps.setDouble(1,amount);
+		        ps.setInt(2,accNo);
+		        int rowsUpdated = ps.executeUpdate();
+			if (rowsUpdated==1) {
+				this.depositInTransaction(amount, accNo);
+				return true;
+			}
+			return false;
+		
+		}
+
+		public void depositInTransaction(Double amount, Integer accNo)  throws SQLException{
+			 PreparedStatement ps = conn.prepareStatement( "INSERT INTO transactions(accNo, amount, type) VALUES (?, ?, 'debit')");
+			 ps.setInt(1,accNo);
+		     ps.setDouble(2,amount);
+		     ps.executeUpdate();
+		}
+
+		public void creditInTransaction(Double amount, Integer accNo) throws SQLException{
+			 PreparedStatement ps = conn.prepareStatement( "INSERT INTO transactions(accNo, amount, type) VALUES (?, ?, 'credit')");
+			 ps.setInt(1,accNo);
+		     ps.setDouble(2,amount);
+		        ps.executeUpdate();
+		}
 	        
 		 public int update(Integer accountNo,Integer branchCode)
 	            throws SQLException{

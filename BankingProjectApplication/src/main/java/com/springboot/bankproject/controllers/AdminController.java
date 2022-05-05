@@ -63,7 +63,7 @@ public class AdminController {
 	}
 	@GetMapping("/customers/list")
 	public ModelAndView showAllCustomers(@RequestParam Map<String, String> paramMap) {
-		ModelAndView mav = new ModelAndView("list-customers");
+		ModelAndView mav = new ModelAndView("admin-list-customers");
 		mav.addObject("customers", customerService.showAllCustomersByBankName(paramMap.get("bankNames")));
 		return mav;
 	}
