@@ -64,7 +64,7 @@ CREATE TABLE BANKACCOUNTS (
 );
 
 CREATE TABLE IF NOT EXISTS TRANSACTIONS(
-    TRANSACTIONNO INT NOT NULL,
+    TRANSACTIONNO INT NOT NULL AUTO_INCREMENT,
     AccNo BIGINT NOT NULL,
     AMOUNT BIGINT ,
     TYPE ENUM('DEBIT','CREDIT'),
@@ -96,14 +96,14 @@ insert into employee VALUES('530','Madhuri','350');
 insert into bankaccounts values('89023383','savings','250','12',default);
 insert into bankaccounts values('95098764','current','350','13',default);
 
-INSERT INTO TRANSACTIONS VALUES('2450','89023383','1000','debit',default);
-INSERT INTO TRANSACTIONS VALUES('3560','89023383','1000','credit',default);
+INSERT INTO TRANSACTIONS VALUES(default,'89023383','1000','debit',default);
+INSERT INTO TRANSACTIONS VALUES(default,'89023383','1000','credit',default);
 
 INSERT INTO admins VALUES('101','Sruthi','1234');
 
-Insert into reversalRequest VALUES('23','2450',default);
+Insert into reversalRequest VALUES('23','3564',default);
 
-Insert into reversalRequest VALUES('33','3560',default);
+Insert into reversalRequest VALUES('33','3565',default);
 
 
 
