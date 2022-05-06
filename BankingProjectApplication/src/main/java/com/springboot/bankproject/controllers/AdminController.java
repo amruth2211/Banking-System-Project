@@ -114,10 +114,19 @@ public class AdminController {
 	
 	@GetMapping("employees/showUpdateForm")
 	public ModelAndView showUpdateForm(@RequestParam MultiValueMap<String, String> paramMap) {
-		ModelAndView mav = new ModelAndView("add-employee-form");
+		ModelAndView mav = new ModelAndView("update-employee-form");
 		Employee employee = employeeService.getEmployeeById(Integer.parseInt(paramMap.getFirst("employeeId")));
-		mav.addObject("bankNames",paramMap.get("bankNames"));
+		mav.addObject("bankNames", paramMap.getFirst("bankNames"));
 		mav.addObject("employee", employee);
+		return mav;
+	}
+	
+	@GetMapping("employees/saveUpdate")
+	public ModelAndView saveUpdate(@RequestParam MultiValueMap<String, String> paramMap,@ModelAttribute Employee employee) {
+		ModelAndView mav = new ModelAndView("save-list-employees");
+		employeeService.updateEmployee(employee.getEmployeeId(),employee.getEmployeeName());
+		mav.addObject("bankNames",paramMap.getFirst("bankNames"));
+		mav.addObject("employees", employeeService.showAllEmployeesByBankName(paramMap.getFirst("bankNames")));
 		return mav;
 	}
 	

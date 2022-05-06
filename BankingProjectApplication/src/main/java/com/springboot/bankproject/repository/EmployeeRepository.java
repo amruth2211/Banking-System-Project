@@ -77,7 +77,7 @@ public class EmployeeRepository implements EmployeeDAO{
 
 	@Override
 	public boolean updateEmployee(Integer empId, String name) throws SQLException{
-		PreparedStatement ps = conn.prepareStatement("UPDATE employees SET name= ? WHERE  EmployeeID= ? ");
+		PreparedStatement ps = conn.prepareStatement("UPDATE employee SET name= ? WHERE  EmployeeID= ? ");
 		 ps.setInt(2,empId);
 		 ps.setString(1, name);
 	        int rowsUpdated = ps.executeUpdate();
