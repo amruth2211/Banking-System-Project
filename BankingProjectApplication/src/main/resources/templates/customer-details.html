@@ -48,40 +48,37 @@
         <br>
         <br>
    <div class="container ">
-        <div class="card mb-4">
-          <div class="card-body">
-            <div class="row" th:each="customers : ${customers}">
-              <div class="col-md-6">
-                <p class="mb-0">Customer ID</p>
-              </div>
-              <div class="row">
-                <td th:text="${customers.customerId}" class="text-muted mb-0"/>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-md-6">
-                <p class="mb-0">Name</p>
-              </div>
-              <div class="row">
-               <td th:text="${customers.name}" class="text-muted mb-0"/>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-md-6">
-                <p class="mb-0">Address</p>
-              </div>
-              <div class="row">
-              <td th:text="${customers.address}" class="text-muted mb-0"/>
-              </div>
-            </div>
-           
-            
-            
-            
-          </div>
-        </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row" th:each="customers : ${customers}">
+                                <div class="col">
+                                    <p class="mb-0">Customer ID</p>
+                                </div>
+                                <div class="col">
+                                    <td th:text="${customers.customerId}" class="text-muted mb-0" />
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="mb-0">Name</p>
+                                </div>
+                                <div class="col">
+                                    <td th:text="${customers.name}" class="text-muted mb-0" />
+                                </div>
+                            </div>
+<hr>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="mb-0">Address</p>
+                                </div>
+                                <div class="col">
+                                    <td th:text="${customers.address}" class="text-muted mb-0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
           </tbody>
           </section>
          </main>

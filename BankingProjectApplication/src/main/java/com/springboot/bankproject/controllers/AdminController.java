@@ -56,9 +56,10 @@ public class AdminController {
 		return mav;
 	}
 	@GetMapping("showAdminForm")
-	public ModelAndView showAdminDetails(@RequestParam Integer adminId) {
+	public ModelAndView showAdminDetails(@RequestParam MultiValueMap<String, String> paramMap) {
 		ModelAndView mav = new ModelAndView("admin-details");
-		mav.addObject("admins",adminService.viewProfile(adminId));
+		mav.addObject("admins",adminService.viewProfile(Integer.parseInt(paramMap.getFirst("adminId"))));
+		mav.addObject("bankNames",paramMap.getFirst("bankNames"));
 		return mav;
 	}
 	@GetMapping("/customers/list")
